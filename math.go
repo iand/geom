@@ -33,7 +33,7 @@ func sqrt(v float32) float32 {
 
 // pow2 returns the next highest power of 2 or the number unchanged if it is already a power of 2.
 // From https://graphics.stanford.edu/~seander/bithacks.html#RoundUpPowerOf2
-func pow2(v uint32) uint32 {
+func Pow2(v uint32) uint32 {
 	v--
 	v |= v >> 1
 	v |= v >> 2
@@ -57,10 +57,7 @@ func cmp(a, b float32) bool {
 
 	largest := max(a, b)
 
-	if diff <= largest*maxRelDiff {
-		return true
-	}
-	return false
+	return diff <= largest*maxRelDiff
 }
 
 func clampZero(v float32) float32 {
@@ -86,7 +83,7 @@ func ClampZeroVec2(v Vec2) Vec2 {
 }
 
 // clamp constrains v to be >=l and <= u
-func clamp(v, l, u float32) float32 {
+func Clamp(v, l, u float32) float32 {
 	if v < l {
 		return l
 	}
@@ -96,8 +93,8 @@ func clamp(v, l, u float32) float32 {
 	return v
 }
 
-// signbit32 returns true if x is negative or negative zero.
-func signbit32(x float32) bool {
+// Signbit32 returns true if x is negative or negative zero.
+func Signbit32(x float32) bool {
 	return math.Float32bits(x)&(1<<31) != 0
 }
 
