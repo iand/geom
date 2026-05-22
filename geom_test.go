@@ -135,7 +135,6 @@ func TestPlane3ContainsPoint(t *testing.T) {
 		pt  Point3
 		hit bool
 	}{
-
 		{p: xyPlane3, pt: Point3{0, 0, 0}, hit: true},
 		{p: xyInvPlane3, pt: Point3{0, 0, 0}, hit: true},
 		{p: xyInvPlane3, pt: Point3{0, 0, 1}, hit: false},
@@ -171,7 +170,6 @@ func TestOBBContainsPoint3(t *testing.T) {
 		pt  Point3
 		hit bool
 	}{
-
 		{o: aaOBB, pt: Point3{0, 0, 0}, hit: true},
 		{o: aaOBB, pt: Point3{1, 0, 0}, hit: true},
 		{o: aaOBB, pt: Point3{0, 1, 0}, hit: true},
@@ -218,7 +216,7 @@ func TestOBBContainsPoint3(t *testing.T) {
 }
 
 // Package level variable for assignment, which avoids benchmarks being optimized away
-var bres interface{}
+var bres any
 
 func BenchmarkOBBContainsPoint3(b *testing.B) {
 	testCases := []struct {

@@ -80,7 +80,7 @@ func IntersectsBox3(a, b Box3) bool {
 	axesa := a.Axes()
 	axesb := b.Axes()
 
-	for j := 0; j < len(axesb); j++ {
+	for j := range axesb {
 		if !OverlapOnAxis(a, b, axesb[j]) {
 			// A separating axis was found
 			return false
@@ -455,7 +455,7 @@ func (a *AABB) MTVAABB(b *AABB) (bool, Vec3) {
 	var minOverlap float32 = maxFloat32
 	var sign float32 = 1
 
-	for i := 0; i < 3; i++ {
+	for i := range 3 {
 		aint := Interval{Min: aMin[i], Max: aMax[i]}
 		bint := Interval{Min: bMin[i], Max: bMax[i]}
 		overlap := aint.GetOverlap(bint)
@@ -571,7 +571,7 @@ func (a *AABB) Raycast(ray Ray3) (RaycastResult, bool) {
 		{0, 0, 1},
 	}
 
-	for i := 0; i < 6; i++ {
+	for i := range 6 {
 		if cmp(res.Distance, t[i]) {
 			res.Normal = normals[i]
 		}
@@ -1053,7 +1053,7 @@ func (o *OBB) ContainsPoint3(pt Point3) bool {
 	dir := pt.Sub(o.Position)
 
 	axes := o.Axes()
-	for i := 0; i < 3; i++ {
+	for i := range 3 {
 		distance := dir.Dot(axes[i])
 		if distance > o.Size[i] {
 			return false
@@ -1212,7 +1212,7 @@ func (o *OBB) Raycast(ray Ray3) (RaycastResult, bool) {
 		axes[2].Mul(-1), // -z
 	}
 
-	for i := 0; i < 6; i++ {
+	for i := range 6 {
 		if cmp(res.Distance, t[i]) {
 			res.Normal = normals[i].Normalize()
 		}
